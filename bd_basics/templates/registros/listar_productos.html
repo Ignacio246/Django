@@ -1,0 +1,50 @@
+{% extends "registros/base.html" %}
+
+{% block content %}
+
+
+<div class="container text-center">
+    <p>Esta es la pagina para listar los Productos</p>
+    </div>
+
+<table class="table table-borderless"> 
+    <thead class="border-botton font-weight-bold">
+<tr>
+    <td>Cod. producto</td>
+    <td>Nom.producto</td>
+    <td>descripcion de producto</td>
+    <td>Cod. proveedor</td>
+    <td>Precio</td>
+    <td>Unidad Existente</td>
+    <td>
+        <a href="{% url 'insert_productos' %}" class="btn btn.outline-sucess">
+            <i class="fas fa-plus"></i>
+        </a>
+    </td>
+    </thead>
+    <tbody>
+        {% for Productos in listar_productos %}
+            <tr>
+                <td>{{Productos.codigo_producto}}</td>
+                <td>{{Productos.nombre_producto}}</td>
+                <td>{{Productos.descripcion_producto}}</td>
+                <td>{{Productos.codigo_proveedor}}</td>
+                <td>{{Productos.precio_unidad}}</td>
+                <td>{{Productos.unidad_existente}}</td>
+                <td>
+                    <a href="{% url 'update_productos' Productos.id %}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+
+
+                    <form action="{% url 'delete_productos' Productos.id %}" method="POST" class="d-inline">
+                        {%csrf_token%}
+                        <button type="submit" class="btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </button>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</tr>
+{% endblock content %}

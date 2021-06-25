@@ -1,0 +1,25 @@
+{% extends "registros/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<h2><p>Inserte su producto</p></h2>
+<a class="btn btn-secondary btn-block btn-lg" href="{% url 'menu' %}">Regresar al Menu</a>
+
+<form action="" method="POST" autocomplete="off">
+    {%csrf_token%}
+    {{form|crispy}}
+
+    <div class="row" style="padding-top: 3%;">
+        <div class="col-md-8">
+            <button type="submit"><i class="fa fa-save"></i>Guardar en BD</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'lista_productos' %}" class="btn btn-secondary btn-block btn-lg">
+               <i class="fas fa-stream"></i> Regresar a listado de Productos
+           </a>
+       </div>
+    </div>
+</form>
+{% endblock content %}

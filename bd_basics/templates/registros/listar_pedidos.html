@@ -1,0 +1,49 @@
+{% extends "registros/base.html" %}
+
+{% block content %}
+
+
+<div class="container text-center">
+    <p>Esta es la pagina para listar los Pedidos</p>
+    </div>
+<table class="table table-borderless"> 
+    <thead class="border-botton font-weight-bold">
+<tr>
+    <td>Cod. pedido</td>
+    <td>No.pedido</td>
+    <td>Cod. producto</td>
+    <td>Cod. cliente</td>
+
+    <td>
+        <a href="{% url 'insert_pedidos' %}" class="btn btn.outline-sucess">
+            <i class="fas fa-plus"></i>
+        </a>
+    </td>
+    </thead>
+    <tbody>
+        {% for Pedidos in listar_pedidos %}
+            <tr>
+                <td>{{Pedidos.codigo_pedido}}</td>
+                <td>{{Pedidos.numero_pedido}}</td>
+                <td>{{Pedidos.codigo_producto}}</td>
+                <td>{{Pedidos.codigo_cliente}}</td>
+
+                <td>
+                    <a href="{% url 'update_registros' Pedidos.id %}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+
+
+                    <form action="{% url 'delete_registros' Pedidos.id %}" method="POST" class="d-inline">
+                        {%csrf_token%}
+                        <button type="submit" class="btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</tr>
+{% endblock content %}

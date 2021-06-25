@@ -1,0 +1,63 @@
+{% extends "registros/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<h2><p>Inserte su nombre</p></h2>
+<a class="btn btn-secondary btn-block btn-lg" href="{% url 'menu' %}">Regresar al Menu</a>
+    
+
+<form action="" method="POST" autocomplete="off">
+    {%csrf_token%}
+    {{form.codigo_cliente|as_crispy_field}}
+    {{form.empresa|as_crispy_field}}
+    <div class="row">
+        <div class="col-md-6">
+            {{form.nom_cliente|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.ape_cliente|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            {{form.puesto|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.direccion|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            {{form.poblacion|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.telefono|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            {{form.cp|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.numero_cc|as_crispy_field}}
+        </div>
+    </div>
+
+<div class="row" style="padding-top: 3%;">
+    <div class="col-md-8">
+        <button type="submit"><i class="fa fa-save"></i>Guardar en BD</button>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'lista_clientes' %}" class="btn btn-secondary btn-block btn-lg">
+           <i class="fas fa-stream"></i> Regresar a listado de Clientes
+       </a>
+   </div>
+</div>
+    
+
+</form>
+
+
+{% endblock content %}

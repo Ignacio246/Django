@@ -1,0 +1,59 @@
+{% extends "registros/base.html" %}
+
+{% block content %}
+
+<div class="container text-center">
+<p>Esta es la pagina para listar los clientes</p>
+</div>
+
+<table class="table table-borderless"> 
+    <thead class="border-botton font-weight-bold">
+<tr>
+    <td>Cod. cliente</td>
+    <td>Empresa</td>
+    <td>Nombre de cliente</td>
+    <td>Ape_Cliente</td>
+    <td>Puesto</td>
+    <td>Direccion</td>
+    <td>Poblacion</td>
+    <td>Telefono</td>
+    <td>Codigo Postal</td>
+    <td>Numero CC</td>
+    <td>
+        <a href="{% url 'insert_clientes' %}" class="btn btn.outline-sucess">
+            <i class="fas fa-plus"></i>
+        </a>
+    </td>
+    </thead>
+    <tbody>
+        {% for Clientes in listar_clientes %}
+            <tr>
+                <td>{{Clientes.codigo_cliente}}</td>
+                <td>{{Clientes.empresa}}</td>
+                <td>{{Clientes.nom_cliente}}</td>
+                <td>{{Clientes.ape_cliente}}</td>
+                <td>{{Clientes.puesto}}</td>
+                <td>{{Clientes.direccion}}</td>
+                <td>{{Clientes.poblacion}}</td>
+                <td>{{Clientes.telefono}}</td>
+                <td>{{Clientes.cp}}</td>
+                <td>{{Clientes.numero_cc}}</td>
+                <td>
+                    <a href="{% url 'update_clientes' Clientes.id %}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+
+
+                    <form action="{% url 'delete_clientes' Clientes.id %}" method="POST" class="d-inline">
+                        {%csrf_token%}
+                        <button type="submit" class="btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</tr>
+{% endblock content %}
